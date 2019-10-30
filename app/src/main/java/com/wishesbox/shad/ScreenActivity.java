@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -22,12 +23,17 @@ public class ScreenActivity extends AppCompatActivity {
     EditText From;
     EditText To;
     EditText Message;
+    ImageView imageView;
+    Bitmap  bitmap;
+    InputStream inputStream;
+    byte[] byteArray;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen);
-
+        imageView = findViewById(R.id.imageView);
 
         Button button = findViewById(R.id.pickup);
         button.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +62,12 @@ public class ScreenActivity extends AppCompatActivity {
                 String msgEditText = Message.getText().toString();
 
 
+
                 Intent intent = new Intent(ScreenActivity.this, HomeActivity.class);
                 intent.putExtra("FROM", frmEditText);
                 intent.putExtra("TO", toEditText);
                 intent.putExtra("MESSAGE", msgEditText);
+                intent.putExtra("IMG",byteArray);
                 startActivity(intent);
 
 
@@ -73,13 +81,21 @@ public class ScreenActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 1) {
-            ImageView imageView = findViewById(R.id.imageView);
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(data.getData());
 
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            try {
+                inputStream = getContentResolver().openInputStream(data.getData());
+
+                bitmap = BitmapFactory.decodeStream(inputStream);
+
+                // Bitmap bmp = BitmapFactory.decodeStream(inputStream);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byteArray = stream.toByteArray();
+
 
                 imageView.setImageBitmap(bitmap);
+
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

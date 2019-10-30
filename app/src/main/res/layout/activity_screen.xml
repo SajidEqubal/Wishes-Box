@@ -8,16 +8,19 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="112dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:text="Birthday Card"
         android:textColor="#000000"
         android:textSize="30dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +64,11 @@
         android:layout_height="wrap_content"
 
 
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="222dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="170dp"
         android:hint="'Massage'"
         android:textSize="25dp"
@@ -98,7 +105,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
 
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:text="Pick Card Image"
@@ -116,6 +123,22 @@
         android:layout_height="0dp"
         android:layout_marginBottom="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msgEditText" />
+
+    <TextView
+        android:id="@+id/notice"
+        android:layout_width="227dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Image size is not grater than 400kb"
+        app:layout_constraintBottom_toTopOf="@+id/pickup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/msgEditText" />
